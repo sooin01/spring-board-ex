@@ -54,7 +54,7 @@
 					</c:if>
 					<c:forEach var="item" begin="${paging.startPage}" end="${paging.endPage}">
 						<c:choose>
-							<c:when test="">
+							<c:when test="${item eq paging.page}">
 								<li class="page-item active"><a class="page-link" href="#">#{item}</a></li>
 							</c:when>
 							<c:otherwise>
