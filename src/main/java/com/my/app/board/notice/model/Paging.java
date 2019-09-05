@@ -12,7 +12,7 @@ public class Paging {
 	int nextPage; // 다음 페이지번호
 
 	public static void main(String[] args) {
-		Paging pageVo = Paging.getPaging(1205, 15, 10, 10);
+		Paging pageVo = Paging.getPaging(200, 20, 10, 10);
 
 		System.out.print(pageVo.firstPage + ", ");
 		System.out.print(pageVo.prevPage + ", ");
@@ -35,7 +35,7 @@ public class Paging {
 		if (endPage > totalPage)
 			endPage = totalPage;
 		int prevPage = startPage - 1;
-		int nextPage = endPage + 1;
+		int nextPage = (endPage == lastPage) ? endPage : endPage + 1;
 
 		Paging paging = new Paging();
 		paging.setPage(page);

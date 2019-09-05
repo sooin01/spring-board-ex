@@ -46,13 +46,28 @@
 			</tbody>
 		</table>
 
-		<nav>
-			<ul class="pagination justify-content-center">
-				<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-				<li class="page-item active"><a class="page-link" href="#">1</a></li>
-				<li class="page-item"><a class="page-link" href="#">Next</a></li>
-			</ul>
-		</nav>
+		<c:if test="${not empty paging}">
+			<nav>
+				<ul class="pagination justify-content-center">
+					<c:if test="${paging.prevPage > 0}">
+						<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+					</c:if>
+					<c:forEach var="item" begin="${paging.startPage}" end="${paging.endPage}">
+						<c:choose>
+							<c:when test="">
+								<li class="page-item active"><a class="page-link" href="#">#{item}</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a class="page-link" href="#">#{item}</a></li>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<c:if test="${paging.nextPage > paging.endPage}">
+						<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					</c:if>
+				</ul>
+			</nav>
+		</c:if>
 
 		<ul class="nav justify-content-end">
 			<li class="nav-item"><a class="nav-link active" href="/notice/form">Write</a></li>
