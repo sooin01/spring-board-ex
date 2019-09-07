@@ -37,6 +37,8 @@
 		$(".loader").show();
 	}).ajaxStop(function() {
 		$(".loader").hide();
+	}).ajaxError(function(event, jqXHR) {
+		alert(jqXHR.status);
 	});
 </script>
 </head>
@@ -106,11 +108,10 @@
 		
 		$.ajax({
             type: 'GET',
-            url: '/notice/list',
-            dataType: 'html',
-            success: function(data) {
+            url: '/notice/view',
+            dataType: 'html'
+		}).done(function(data) {
             	
-            }
         });
 	});
 </script>

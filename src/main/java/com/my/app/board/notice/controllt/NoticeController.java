@@ -37,6 +37,7 @@ public class NoticeController {
 
 	@GetMapping(value = { "/view" })
 	public String view() {
+		int r = 1 / 0;
 		return "notice/view";
 	}
 
