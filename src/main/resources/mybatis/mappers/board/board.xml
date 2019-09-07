@@ -30,5 +30,13 @@
 		FROM   board
 		WHERE  seq = #{seq}
 	</select>
+	
+	<insert id="insertBoard">
+		INSERT INTO board (
+			title, content, user_id, is_delete
+		) VALUES (
+			#{title}, #{content}, #{userId}, #{isDelete}
+		)
+	</insert>
 
 </mapper>

@@ -10,63 +10,26 @@
 <link href="/resources/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 <script src="/resources/lib/jquery/jquery-3.3.1.min.js"></script>
 <script src="/resources/lib/bootstrap/js/bootstrap.min.js"></script>
-<style>
-.loader {
-  border: 16px solid #f3f3f3;
-  border-radius: 50%;
-  border-top: 16px solid #3498db;
-  width: 120px;
-  height: 120px;
-  -webkit-animation: spin 2s linear infinite; /* Safari */
-  animation: spin 2s linear infinite;
-}
-
-/* Safari */
-@-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-</style>
-<script type="text/javascript">
-	$(document).ajaxStart(function() {
-		$(".loader").show();
-	}).ajaxStop(function() {
-		$(".loader").hide();
-	}).ajaxError(function(event, jqXHR) {
-		alert(jqXHR.status);
-	});
-</script>
 </head>
 <body>
 
 <div class="container">
 
-	<div class="loader" style="display: none;"></div>
+	<%@ include file="/WEB-INF/views/include/common.jsp" %>
 
 	<form id="inputForm">
 		<div class="form-group">
 			<label for="title">Title</label>
-			<input type="text" class="form-control" id="title" placeholder="Enter title">
+			<input type="text" class="form-control" id="title" name="title" placeholder="Enter title">
 		</div>
 		<div class="form-group">
 			<label for="content">Content</label>
-			<input type="text" class="form-control" id="content" placeholder="Enter content">
+			<input type="text" class="form-control" id="content" name="content" placeholder="Enter content">
 		</div>
-	</form>
-
-	<form id="uploadForm" method="post" enctype="multipart/form-data">
 		<div class="input-group">
 			<div class="custom-file">
 				<input type="file" class="custom-file-input" id="file" name="file">
 				<label class="custom-file-label" for="file">Choose file</label>
-			</div>
-			<div class="input-group-append">
-				<button class="btn btn-outline-secondary" type="button" id="upload">Upload</button>
 			</div>
 		</div>
 	</form>
@@ -84,21 +47,19 @@
 		$(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 	});
 	
-	$('#upload').on('click', function(e) {
+	$('#save').on('click', function(e) {
 		e.preventDefault();
 		
-		var formData = new FormData();
-		formData.append("file", $("input[name=file]")[0].files[0]);
+		var formData = new FormData($("#inputForm")[0]);
 		
 		$.ajax({
             type: 'POST',
-            url: '/notice/upload',
-            enctype: 'multipart/form-data',
+            url: '/notice/save',
             processData: false,
             contentType: false,
             data: formData,
             success: function(data) {
-                alert("업로드 성공!!");
+            	
             }
         });
 	});
@@ -106,13 +67,14 @@
 	$('#list').on('click', function(e) {
 		e.preventDefault();
 		
-		$.ajax({
+		location.href = '/notice/list';
+		/* $.ajax({
             type: 'GET',
-            url: '/notice/view',
+            url: '/notice/list',
             dataType: 'html'
 		}).done(function(data) {
-            	
-        });
+			
+		}); */
 	});
 </script>
 

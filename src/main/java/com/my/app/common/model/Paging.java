@@ -1,4 +1,4 @@
-package com.my.app.board.notice.model;
+package com.my.app.common.model;
 
 public class Paging {
 

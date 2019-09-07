@@ -2,6 +2,10 @@ package com.my.app.board.model;
 
 import java.sql.Timestamp;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
+import org.springframework.web.multipart.MultipartFile;
+
 public class Board {
 
 	private Integer seq;
@@ -11,6 +15,8 @@ public class Board {
 	private Boolean isDelete;
 	private Timestamp createDt;
 	private Timestamp updateDt;
+
+	private MultipartFile file;
 
 	private int page = 1;
 	private int listCount = 10;
@@ -72,6 +78,14 @@ public class Board {
 		this.updateDt = updateDt;
 	}
 
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
 	public int getPage() {
 		return page;
 	}
@@ -94,6 +108,11 @@ public class Board {
 
 	public void setOffset(int offset) {
 		this.offset = offset;
+	}
+
+	@Override
+	public String toString() {
+		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
 	}
 
 }

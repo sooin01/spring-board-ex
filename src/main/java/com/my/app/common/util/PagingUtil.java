@@ -1,6 +1,6 @@
 package com.my.app.common.util;
 
-import com.my.app.board.notice.model.Paging;
+import com.my.app.common.model.Paging;
 
 public class PagingUtil {
 

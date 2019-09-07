@@ -1,4 +1,4 @@
-<configuration>
+<configuration scan="true" scanPeriod="3 seconds">
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
@@ -8,7 +8,7 @@
 
 	<logger name="com.my.app" level="debug" />
 
-	<logger name="Query." level="debug" />
+	<logger name="Query" level="debug" />
 
 	<root level="info">
 		<appender-ref ref="STDOUT" />

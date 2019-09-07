@@ -8,12 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.my.app.board.model.Board;
-import com.my.app.board.notice.model.FileBucket;
-import com.my.app.board.notice.model.Paging;
 import com.my.app.board.service.BoardService;
+import com.my.app.common.model.Paging;
 import com.my.app.common.util.PagingUtil;
 
 @Controller
@@ -25,6 +24,7 @@ public class NoticeController {
 
 	@GetMapping(value = { "/", "/list" })
 	public String list(Board board, Model model) {
+		board.setOffset((board.getPage() - 1) * board.getListCount());
 		int noticeCount = boardService.getBoardCount(board);
 		List<Board> noticeList = boardService.getBoardList(board);
 		model.addAttribute("noticeList", noticeList);
@@ -37,7 +37,6 @@ public class NoticeController {
 
 	@GetMapping(value = { "/view" })
 	public String view() {
-		int r = 1 / 0;
 		return "notice/view";
 	}
 
@@ -47,14 +46,11 @@ public class NoticeController {
 	}
 
 	@PostMapping(value = { "/save" })
-	public String save(@RequestParam(value = "id", required = false) Integer id) {
-		return "redirect:/notice/view?id=" + id;
-	}
-
-	@PostMapping(value = "/upload")
-	public void upload(FileBucket fileBucket) {
-		System.out.println(fileBucket.getFile().getOriginalFilename());
-		System.out.println(fileBucket.getFile().getSize());
+	@ResponseBody
+	public void save(Board board) {
+		board.setUserId("admin");
+		board.setIsDelete(false);
+		boardService.insertBoard(board);
 	}
 
 }
