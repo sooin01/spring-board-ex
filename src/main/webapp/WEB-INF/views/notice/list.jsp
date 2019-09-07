@@ -13,66 +13,56 @@
 <script src="/resources/lib/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div class="container">
 
-		<table class="table">
-			<thead class="thead-light">
-				<tr>
-					<th scope="col">#</th>
-					<th scope="col">First</th>
-					<th scope="col">Last</th>
-					<th scope="col">Handle</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<th scope="row">1</th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td>Jacob</td>
-					<td>Thornton</td>
-					<td>@fat</td>
-				</tr>
-				<tr>
-					<th scope="row">3</th>
-					<td>Larry</td>
-					<td>the Bird</td>
-					<td>@twitter</td>
-				</tr>
-			</tbody>
-		</table>
+<div class="container">
 
-		<c:if test="${not empty paging}">
-			<nav>
-				<ul class="pagination justify-content-center">
-					<c:if test="${paging.prevPage > 0}">
-						<li class="page-item"><a class="page-link" href="#">Previous</a></li>
-					</c:if>
-					<c:forEach var="item" begin="${paging.startPage}" end="${paging.endPage}">
-						<c:choose>
-							<c:when test="${item eq paging.page}">
-								<li class="page-item active"><a class="page-link" href="#">#{item}</a></li>
-							</c:when>
-							<c:otherwise>
-								<li class="page-item"><a class="page-link" href="#">#{item}</a></li>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<c:if test="${paging.nextPage > paging.endPage}">
-						<li class="page-item"><a class="page-link" href="#">Next</a></li>
-					</c:if>
-				</ul>
-			</nav>
-		</c:if>
+	<table class="table">
+		<thead class="thead-light">
+			<tr>
+				<th scope="col">번호</th>
+				<th scope="col">제목</th>
+				<th scope="col">등록아이디</th>
+				<th scope="col">등록날짜</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach var="item" items="${noticeList}">
+				<tr>
+					<th scope="row">${item.seq}</th>
+					<td>${item.title}</td>
+					<td>${item.userId}</td>
+					<td>${item.createDt}</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+	</table>
 
-		<ul class="nav justify-content-end">
-			<li class="nav-item"><a class="nav-link active" href="/notice/form">Write</a></li>
+	<nav>
+		<ul class="pagination justify-content-center">
+			<c:if test="${paging.prevPage > 0}">
+				<li class="page-item"><a class="page-link" href="#">Previous</a></li>
+			</c:if>
+			<c:forEach var="item" begin="${paging.startPage}" end="${paging.endPage}">
+				<c:choose>
+					<c:when test="${item eq paging.page}">
+						<li class="page-item active"><a class="page-link" href="#">${item}</a></li>
+					</c:when>
+					<c:otherwise>
+						<li class="page-item"><a class="page-link" href="#">${item}</a></li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${paging.nextPage > paging.endPage}">
+				<li class="page-item"><a class="page-link" href="#">Next</a></li>
+			</c:if>
 		</ul>
+	</nav>
 
-	</div>
+	<ul class="nav justify-content-end">
+		<li class="nav-item"><a class="nav-link active" href="/notice/form">Write</a></li>
+	</ul>
+
+</div>
+
 </body>
 </html>
