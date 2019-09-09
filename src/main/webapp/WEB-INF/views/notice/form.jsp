@@ -65,13 +65,7 @@
 	$('#list').on('click', function(e) {
 		e.preventDefault();
 		
-		$.ajax({
-            type: 'GET',
-            url: '/notice/list',
-            dataType: 'html'
-		}).done(function(data) {
-			
-		});
+		location.replace('/notice/list');
 	});
 </script>
 
