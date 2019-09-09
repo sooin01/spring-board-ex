@@ -1,16 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!doctype html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
 <title>Notice</title>
-<link href="/resources/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<script src="/resources/lib/jquery/jquery-3.3.1.min.js"></script>
-<script src="/resources/lib/bootstrap/js/bootstrap.min.js"></script>
+<%@ include file="/WEB-INF/views/include/head.jsp" %>
 </head>
 <body>
 
@@ -61,8 +58,25 @@
 	<ul class="nav justify-content-end">
 		<li class="nav-item"><a class="nav-link active" href="/notice/form">Write</a></li>
 	</ul>
-
+	
 </div>
+
+<div class="remodal" data-remodal-id="modal" data-remodal-options="hashTracking: false">
+	<button data-remodal-action="close" class="remodal-close"></button>
+	<h3>알림</h3>
+	<p>저장하시겠습니까?</p>
+	<br>
+	<button data-remodal-action="confirm" class="remodal-confirm">OK</button>
+	<button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
+</div>
+
+<a data-remodal-target="modal" href="#">저장</a>
+	
+<script type="text/javascript">
+	$(document).on('confirmation', '.remodal', function() {
+		alert("OK");
+	});
+</script>
 
 </body>
 </html>
