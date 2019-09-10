@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.my.app.board.model.Board;
 import com.my.app.board.service.BoardService;
+import com.my.app.common.annotation.Authorization;
+import com.my.app.common.annotation.Authorization.Role;
 import com.my.app.common.model.Paging;
 import com.my.app.common.util.PagingUtil;
 
@@ -22,6 +24,7 @@ public class NoticeController {
 	@Autowired
 	private BoardService boardService;
 
+	@Authorization(name = { Role.ADMIN, Role.USER })
 	@GetMapping(value = { "/", "/list" })
 	public String list(Board board, Model model) {
 		board.setOffset((board.getPage() - 1) * board.getListCount());
