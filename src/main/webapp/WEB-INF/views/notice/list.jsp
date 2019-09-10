@@ -56,29 +56,25 @@
 	</nav>
 
 	<ul class="nav justify-content-end">
-		<li class="nav-item"><a class="nav-link active" data-remodal-target="modal" href="#">Write</a></li>
+		<li class="nav-item"><a class="nav-link active" href="#" onclick="goWrite(); return false;">Write</a></li>
 	</ul>
 	
 </div>
 
-<div class="remodal" data-remodal-id="modal" data-remodal-options="hashTracking: false">
-	<button data-remodal-action="close" class="remodal-close"></button>
-	<h3>알림</h3>
-	<p>작성화면으로 이동하시겠습니까?</p>
-	<br>
-	<button data-remodal-action="confirm" class="remodal-confirm">확인</button>
-	<button data-remodal-action="cancel" class="remodal-cancel">취소</button>
-</div>
-
-<%--
-<a data-remodal-target="modal" href="#">저장</a>
-<button data-remodal-target="modal" type="button">저장</button>
---%>
-
 <script type="text/javascript">
-	$(document).on('confirmation', '.remodal', function() {
-		location.replace('/notice/form');
-	});
+	function goWrite() {
+		$.confirm({
+		    title: '알림!',
+		    content: '작성페이지로 이동하시겠습니까?',
+		    buttons: {
+		        확인: function () {
+		        	location.href = '/notice/form';
+		        },
+		        취소: function () {
+		        }
+		    }
+		});
+	}
 </script>
 
 </body>
