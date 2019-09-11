@@ -56,10 +56,19 @@
 	</nav>
 
 	<ul class="nav justify-content-end">
-		<li class="nav-item"><a class="nav-link active" href="#" onclick="goWrite(); return false;">Write</a></li>
+		<li class="nav-item"><a class="nav-link active" href="#" onclick="goWrite2(); return false;">Write</a></li>
 	</ul>
 	
 </div>
+
+<div id="dialog-confirm" title="알림" style="display:none;">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>작성페이지로 이동하시겠습니까?</p>
+</div>
+
+<style>
+.fixed-dialog { position: fixed; }
+.ui-widget-overlay { background: #aaaaaa; opacity: .5; filter: Alpha(Opacity=.3); /* support: IE8 */ }
+</style>
 
 <script type="text/javascript">
 	function goWrite() {
@@ -73,6 +82,25 @@
 		        취소: function () {
 		        }
 		    }
+		});
+	}
+	
+	function goWrite2() {
+		$("#dialog-confirm").dialog({
+			resizable : false,
+			height : "auto",
+			width : 350,
+			modal : true,
+			draggable: false,
+			dialogClass: 'fixed-dialog',
+			buttons : {
+				확인 : function() {
+					location.href = '/notice/form';
+				},
+				취소 : function() {
+					$(this).dialog("close");
+				}
+			}
 		});
 	}
 </script>

@@ -27,6 +27,7 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/**" />
+			<exclude-mapping path="/resources/**" />
 			<beans:bean class="com.my.app.common.interceptor.AuthInterceptor" />
 		</interceptor>
 	</interceptors>
