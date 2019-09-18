@@ -7,13 +7,13 @@
 <head>
 <meta charset="utf-8">
 <title>Notice</title>
-<%@ include file="/WEB-INF/views/include/head.jsp" %>
+<%@ include file="/WEB-INF/views/common/include/head.jsp" %>
 </head>
 <body>
 
 <div class="container">
 
-	<%@ include file="/WEB-INF/views/include/common.jsp" %>
+	<%@ include file="/WEB-INF/views/common/include/common.jsp" %>
 
 	<form id="inputForm">
 		<div class="form-group">
