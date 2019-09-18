@@ -13,6 +13,8 @@
 
 <div class="container">
 
+	<%@ include file="/WEB-INF/views/common/include/common.jsp" %>
+
 	<table class="table">
 		<thead class="thead-light">
 			<tr>
@@ -56,7 +58,8 @@
 	</nav>
 
 	<ul class="nav justify-content-end">
-		<li class="nav-item"><a class="nav-link active" href="#" onclick="goWrite2(); return false;">Write</a></li>
+		<li class="nav-item"><a class="nav-link active" href="#" onclick="goWrite(); return false;">Write</a></li>
+		<li class="nav-item"><a class="nav-link active" href="#" onclick="goWrite2(); return false;">Write2</a></li>
 	</ul>
 	
 </div>
@@ -65,7 +68,7 @@
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:12px 12px 20px 0;"></span>작성페이지로 이동하시겠습니까?</p>
 </div>
 
-<style>
+<style type="text/css">
 .fixed-dialog { position: fixed; }
 .ui-widget-overlay { background: #aaaaaa; opacity: .5; filter: Alpha(Opacity=.3); /* support: IE8 */ }
 </style>
@@ -73,29 +76,35 @@
 <script type="text/javascript">
 	function goWrite() {
 		$.confirm({
-		    title: '알림!',
-		    content: '작성페이지로 이동하시겠습니까?',
-		    buttons: {
-		        확인: function () {
-		        	location.href = '/notice/form';
-		        },
-		        취소: function () {
-		        }
-		    }
+			title : '알림!',
+			content : '작성페이지로 이동하시겠습니까?',
+			buttons : {
+				확인 : function() {
+					//location.href = '/notice/form';
+				},
+				취소 : function() {
+				}
+			}
 		});
 	}
-	
+
 	function goWrite2() {
 		$("#dialog-confirm").dialog({
 			resizable : false,
 			height : "auto",
 			width : 350,
 			modal : true,
-			draggable: false,
-			dialogClass: 'fixed-dialog',
+			draggable : false,
+			dialogClass : 'fixed-dialog',
+			clickOutside : true,
+			open : function(event, ui) {
+				$(".ui-widget-overlay").click(function() {
+					$(ui).dialog("close");
+				});
+			},
 			buttons : {
 				확인 : function() {
-					location.href = '/notice/form';
+					//location.href = '/notice/form';
 				},
 				취소 : function() {
 					$(this).dialog("close");
