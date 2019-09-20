@@ -13,6 +13,7 @@
 		<param-value>
 			/WEB-INF/classes/spring/root-context.xml
 			/WEB-INF/classes/spring/config-context.xml
+			/WEB-INF/classes/spring/rest-context.xml
 		</param-value>
 	</context-param>
 
