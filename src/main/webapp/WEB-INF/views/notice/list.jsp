@@ -123,10 +123,10 @@
 		window.setInterval(fnDatetime, 1000);
 	});
 	
-	var startDt = Number("${milliseconds}");
+	var date = new Date(Number("${milliseconds}"));
+	
 	function fnDatetime() {
-		var date = new Date(startDt);
-		startDt += 1000;
+		date.setSeconds(date.getSeconds() + 1);
 		
 		var datetime = [];
 		datetime.push(date.getFullYear());
