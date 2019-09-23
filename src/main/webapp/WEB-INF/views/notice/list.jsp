@@ -8,14 +8,19 @@
 <meta charset="utf-8">
 <title>Notice</title>
 <%@ include file="/WEB-INF/views/common/include/head.jsp" %>
+<%@ include file="/WEB-INF/views/common/include/common.jsp" %>
 </head>
 <body>
 
 <div class="container">
 
-	<%@ include file="/WEB-INF/views/common/include/common.jsp" %>
+		<header class="blog-header py-3">
+			<div class="row flex-nowrap justify-content-between align-items-center">
+				<div class="col-12 text-center" id="clock"></div>
+			</div>
+		</header>
 
-	<table class="table">
+		<table class="table">
 		<thead class="thead-light">
 			<tr>
 				<th scope="col">번호</th>
@@ -111,6 +116,33 @@
 				}
 			}
 		});
+	}
+	
+	$(document).ready(function() {
+		fnDatetime();
+		window.setInterval(fnDatetime, 1000);
+	});
+	
+	var startDt = Number("${milliseconds}");
+	function fnDatetime() {
+		var date = new Date(startDt);
+		startDt += 1000;
+		
+		var datetime = [];
+		datetime.push(date.getFullYear());
+		datetime.push("년 ");
+		datetime.push(date.getMonth() + 1 < 10 ? "0" + (date.getMonth() + 1) : date.getMonth() + 1);
+		datetime.push("월 ");
+		datetime.push(date.getDate() < 10 ? "0" + date.getDate() : date.getDate());
+		datetime.push("일 ");
+		datetime.push(date.getHours() < 10 ? "0" + date.getHours() : date.getHours());
+		datetime.push("시 ");
+		datetime.push(date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes());
+		datetime.push("분 ");
+		datetime.push(date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds());
+		datetime.push("초");
+		
+		$("#clock").html(datetime.join(""));
 	}
 </script>
 

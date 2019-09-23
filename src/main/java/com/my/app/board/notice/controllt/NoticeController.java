@@ -15,6 +15,7 @@ import com.my.app.board.service.BoardService;
 import com.my.app.common.annotation.Authorization;
 import com.my.app.common.annotation.Authorization.Role;
 import com.my.app.common.model.Paging;
+import com.my.app.common.service.CommonService;
 import com.my.app.common.util.PagingUtil;
 
 @Controller
@@ -23,6 +24,9 @@ public class NoticeController {
 
 	@Autowired
 	private BoardService boardService;
+
+	@Autowired
+	private CommonService commonService;
 
 	@Authorization(name = { Role.ADMIN, Role.USER })
 	@GetMapping(value = { "/", "/list" })
@@ -34,6 +38,9 @@ public class NoticeController {
 
 		Paging paging = PagingUtil.getPaging(noticeCount, board.getPage(), board.getListCount());
 		model.addAttribute("paging", paging);
+
+		long milliseconds = commonService.getCurrentTimestamp().getTime();
+		model.addAttribute("milliseconds", milliseconds);
 
 		return "notice/list";
 	}
