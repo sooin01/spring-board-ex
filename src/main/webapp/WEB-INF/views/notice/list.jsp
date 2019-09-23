@@ -12,15 +12,76 @@
 </head>
 <body>
 
+<div style="width:500px;">
+	<canvas id="chart" width="500" height="300"></canvas>
+</div>
+
+<script>
+window.chartColors = {
+	red: 'rgb(255, 99, 132)',
+	orange: 'rgb(255, 159, 64)',
+	yellow: 'rgb(255, 205, 86)',
+	green: 'rgb(75, 192, 192)',
+	blue: 'rgb(54, 162, 235)',
+	purple: 'rgb(153, 102, 255)',
+	grey: 'rgb(201, 203, 207)'
+};
+
+var config = {
+	type: 'pie',
+	data: {
+		datasets: [
+			{
+				data: [300, 50, 100, 40, 10],
+				backgroundColor: [
+					window.chartColors.red,
+					window.chartColors.orange,
+					window.chartColors.yellow,
+					window.chartColors.green,
+					window.chartColors.blue,
+				]
+			}
+		],
+		labels: [
+			'Red',
+			'Orange',
+			'Yellow',
+			'Green',
+			'Blue'
+		]
+	},
+	options: {
+		title: {
+            display: true,
+            text: 'Custom Chart Title'
+        },
+		legend: {
+			display: true,
+			position: "right"
+		},
+		tooltips: {
+			enabled: false
+		},
+		plugins: {
+			labels: {
+				render: "percentage"
+			}
+		}
+	}
+};
+var ctx = document.getElementById('chart').getContext('2d');
+var chart = new Chart(ctx, config);
+</script>
+
 <div class="container">
 
-		<header class="blog-header py-3">
-			<div class="row flex-nowrap justify-content-between align-items-center">
-				<div class="col-12 text-center" id="clock"></div>
-			</div>
-		</header>
+	<header class="blog-header py-3">
+		<div class="row flex-nowrap justify-content-between align-items-center">
+			<div class="col-12 text-center" id="clock"></div>
+		</div>
+	</header>
 
-		<table class="table">
+	<table class="table">
 		<thead class="thead-light">
 			<tr>
 				<th scope="col">번호</th>
