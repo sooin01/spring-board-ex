@@ -24,10 +24,20 @@
 			<label for="content">Content</label>
 			<input type="text" class="form-control" id="content" name="content" placeholder="Enter content">
 		</div>
-		<div class="input-group">
+		<div class="form-group">
 			<div class="custom-file">
 				<input type="file" class="custom-file-input" id="file" name="file">
 				<label class="custom-file-label" for="file">Choose file</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="checkbox" name="categorys" value="normal" id="normal">
+				<label class="form-check-label" for="normal">Normal</label>
+			</div>
+			<div class="form-check form-check-inline">
+				<input class="form-check-input" type="checkbox" name="categorys" value="etc" id="etc">
+				<label class="form-check-label" for="etc">ETC</label>
 			</div>
 		</div>
 	</form>

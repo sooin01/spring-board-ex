@@ -1,6 +1,7 @@
 package com.my.app.board.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -11,6 +12,7 @@ public class Board {
 	private Integer seq;
 	private String title;
 	private String content;
+	private List<String> categorys;
 	private String userId;
 	private Boolean isDelete;
 	private Timestamp createDt;
@@ -44,6 +46,14 @@ public class Board {
 
 	public void setContent(String content) {
 		this.content = content;
+	}
+
+	public List<String> getCategorys() {
+		return categorys;
+	}
+
+	public void setCategorys(List<String> categorys) {
+		this.categorys = categorys;
 	}
 
 	public String getUserId() {
