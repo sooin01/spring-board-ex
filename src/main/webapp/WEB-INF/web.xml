@@ -16,6 +16,10 @@
 			/WEB-INF/classes/spring/rest-context.xml
 		</param-value>
 	</context-param>
+    <context-param>
+        <param-name>isLog4jAutoInitializationDisabled</param-name>
+        <param-value>true</param-value>
+    </context-param>
 
 	<filter>
 		<filter-name>encodingFilter</filter-name>
