@@ -8,7 +8,6 @@
 <meta charset="utf-8">
 <title>Notice</title>
 <%@ include file="/WEB-INF/views/common/include/head.jsp" %>
-<%@ include file="/WEB-INF/views/common/include/common.jsp" %>
 </head>
 <body>
 
@@ -66,10 +65,6 @@
 		<li class="nav-item"><a class="nav-link active" href="#" onclick="goWrite(); return false;">Write</a></li>
 		<li class="nav-item"><a class="nav-link active" href="#" onclick="goWrite2(); return false;">Write2</a></li>
 	</ul>
-	
-	<div style="width:500px;">
-		<canvas id="chart" width="500" height="300"></canvas>
-	</div>
 	
 </div>
 
@@ -148,61 +143,6 @@
 		
 		$("#clock").html(datetime.join(""));
 	}
-	
-	window.chartColors = {
-		red: 'rgb(255, 99, 132)',
-		orange: 'rgb(255, 159, 64)',
-		yellow: 'rgb(255, 205, 86)',
-		green: 'rgb(75, 192, 192)',
-		blue: 'rgb(54, 162, 235)',
-		purple: 'rgb(153, 102, 255)',
-		grey: 'rgb(201, 203, 207)'
-	};
-	
-	var config = {
-		type: 'pie',
-		data: {
-			datasets: [
-				{
-					data: [300, 150, 100, 90, 50],
-					backgroundColor: [
-						window.chartColors.red,
-						window.chartColors.orange,
-						window.chartColors.yellow,
-						window.chartColors.green,
-						window.chartColors.blue,
-					]
-				}
-			],
-			labels: [
-				'빨강색',
-				'오렌지색',
-				'노랑색',
-				'녹색',
-				'파란색'
-			]
-		},
-		options: {
-			title: {
-	            display: true,
-	            text: "컬러"
-	        },
-			legend: {
-				display: true,
-				position: "right"
-			},
-			tooltips: {
-				enabled: false
-			},
-			plugins: {
-				labels: {
-					render: "percentage"
-				}
-			}
-		}
-	};
-	var ctx = document.getElementById('chart').getContext('2d');
-	var chart = new Chart(ctx, config);
 </script>
 
 </body>

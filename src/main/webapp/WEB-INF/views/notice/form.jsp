@@ -13,8 +13,6 @@
 
 <div class="container">
 
-	<%@ include file="/WEB-INF/views/common/include/common.jsp" %>
-
 	<form id="inputForm">
 		<div class="form-group">
 			<label for="title">Title</label>
