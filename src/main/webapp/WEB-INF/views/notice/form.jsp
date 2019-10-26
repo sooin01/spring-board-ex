@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ include file="/WEB-INF/views/common/include/taglibs.jsp" %>
 <!doctype html>
 <html lang="ko">
 <head>
@@ -20,7 +18,7 @@
 		</div>
 		<div class="form-group">
 			<label for="content">Content</label>
-			<input type="text" class="form-control" id="content" name="content" placeholder="Enter content">
+			<textarea class="form-control" id="content" name="content"></textarea>
 		</div>
 		<div class="form-group">
 			<div class="custom-file">
@@ -48,6 +46,13 @@
 </div>
 	
 <script type="text/javascript">
+	$(document).ready(function() {
+		$('#content').summernote({
+			placeholder: '내용을 입력하세요.',
+			height: 300
+		});
+	});
+	
 	$(".custom-file-input").on("change", function() {
 		var fileName = $(this).val().split("\\").pop();
 		$(this).siblings(".custom-file-label").addClass("selected").html(fileName);

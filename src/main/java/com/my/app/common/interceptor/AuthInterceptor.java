@@ -6,6 +6,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,11 +17,11 @@ import com.my.app.common.annotation.Authorization.Role;
 
 public class AuthInterceptor implements HandlerInterceptor {
 
+	private static final Logger LOG = LoggerFactory.getLogger(AuthInterceptor.class);
+
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("권한 체크!");
-
 		HandlerMethod method = (HandlerMethod) handler;
 		Authorization authorization = method.getMethodAnnotation(Authorization.class);
 
@@ -27,15 +29,15 @@ public class AuthInterceptor implements HandlerInterceptor {
 			List<Role> roleList = Arrays.asList(authorization.name());
 
 			if (roleList.contains(Role.ADMIN) && roleList.contains(Role.USER)) {
-				System.out.println("관리자와 사용자 접근 가능!");
+				LOG.info("관리자/사용자 접근 가능!");
 				// throw new UnauthorizedException();
 			} else if (roleList.contains(Role.ADMIN)) {
-				System.out.println("관리자 접근 가능!");
+				LOG.info("관리자 접근 가능!");
 			} else if (roleList.contains(Role.USER)) {
-				System.out.println("사용자 접근 가능!");
+				LOG.info("사용자 접근 가능!");
 			}
 		} else {
-			System.out.println("누구나 접근 가능!");
+			LOG.info("누구나 접근 가능!");
 		}
 
 		return true;

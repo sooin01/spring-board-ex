@@ -1,6 +1,8 @@
-package com.my.app.board.notice.controllt;
+package com.my.app.board.controller;
 
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,7 +17,6 @@ import com.my.app.board.service.BoardService;
 import com.my.app.common.annotation.Authorization;
 import com.my.app.common.annotation.Authorization.Role;
 import com.my.app.common.model.Paging;
-import com.my.app.common.service.CommonService;
 import com.my.app.common.util.PagingUtil;
 
 @Controller
@@ -25,12 +26,9 @@ public class NoticeController {
 	@Autowired
 	private BoardService boardService;
 
-	@Autowired
-	private CommonService commonService;
-
 	@Authorization(name = { Role.ADMIN, Role.USER })
 	@GetMapping(value = { "/", "/list" })
-	public String list(Board board, Model model) {
+	public String list(Board board, Model model, HttpSession session) {
 		board.setOffset((board.getPage() - 1) * board.getListCount());
 		int noticeCount = boardService.getBoardCount(board);
 		List<Board> noticeList = boardService.getBoardList(board);
@@ -39,8 +37,7 @@ public class NoticeController {
 		Paging paging = PagingUtil.getPaging(noticeCount, board.getPage(), board.getListCount());
 		model.addAttribute("paging", paging);
 
-		long milliseconds = commonService.getCurrentTimestamp().getTime();
-		model.addAttribute("milliseconds", milliseconds);
+		session.setAttribute("user", "test");
 
 		return "notice/list";
 	}
