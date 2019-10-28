@@ -2,11 +2,9 @@ package com.my.app.board.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +26,7 @@ public class NoticeController {
 
 	@Authorization(name = { Role.ADMIN, Role.USER })
 	@GetMapping(value = { "/", "/list" })
-	public String list(Board board, Model model, HttpSession session) {
+	public String list(Board board, ModelMap model) {
 		board.setOffset((board.getPage() - 1) * board.getListCount());
 		int noticeCount = boardService.getBoardCount(board);
 		List<Board> noticeList = boardService.getBoardList(board);
@@ -37,13 +35,13 @@ public class NoticeController {
 		Paging paging = PagingUtil.getPaging(noticeCount, board.getPage(), board.getListCount());
 		model.addAttribute("paging", paging);
 
-		session.setAttribute("user", "test");
-
 		return "notice/list";
 	}
 
 	@GetMapping(value = { "/view" })
-	public String view() {
+	public String view(Board params, ModelMap model) {
+		Board board = boardService.getBoard(params);
+		model.addAttribute("board", board);
 		return "notice/view";
 	}
 

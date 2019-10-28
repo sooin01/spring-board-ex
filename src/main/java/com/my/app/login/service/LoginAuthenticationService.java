@@ -22,8 +22,9 @@ public class LoginAuthenticationService implements AuthenticationProvider {
 		String password = authentication.getCredentials().toString();
 		UserDetails userDetails = loginUserService.loadUserByUsername(username);
 
-		System.out.println(password);
-		System.out.println(passwordEncoder.encode(password));
+		if (userDetails.getPassword().equals(passwordEncoder.encode(password))) {
+
+		}
 
 		return new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword(),
 				userDetails.getAuthorities());

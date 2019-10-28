@@ -31,7 +31,7 @@
 					<c:forEach var="item" items="${noticeList}">
 						<tr>
 							<th scope="row">${item.seq}</th>
-							<td>${item.title}</td>
+							<td><a href="#" onclick="goView(${item.seq}); return false;">${item.title}</a></td>
 							<td>${item.userId}</td>
 							<td>${item.createDt}</td>
 						</tr>
@@ -47,10 +47,10 @@
 					<c:forEach var="item" begin="${paging.startPage}" end="${paging.endPage}">
 						<c:choose>
 							<c:when test="${item eq paging.page}">
-								<li class="page-item active"><a class="page-link" href="#" onclick="return false;">${item}</a></li>
+								<li class="page-item active"><a class="page-link" href="#" onclick="goList(${item}); return false;">${item}</a></li>
 							</c:when>
 							<c:otherwise>
-								<li class="page-item"><a class="page-link" href="#" onclick="return false;">${item}</a></li>
+								<li class="page-item"><a class="page-link" href="#" onclick="goList(${item}); return false;">${item}</a></li>
 							</c:otherwise>
 						</c:choose>
 					</c:forEach>
@@ -81,6 +81,14 @@
 				}
 			}
 		});
+	}
+	
+	function goView(seq) {
+		location.href = '/notice/view?seq=' + seq;
+	}
+	
+	function goList(page) {
+		location.href = '/notice/list?page=' + page;
 	}
 
 	$(document).ready(function() {

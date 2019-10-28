@@ -1,4 +1,4 @@
-<configuration scan="true" scanPeriod="3 seconds">
+<configuration scan="true" scanPeriod="5 seconds">
 
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
@@ -10,7 +10,9 @@
 
 	<logger name="org.springframework.web" level="info" />
 
-	<logger name="org.springframework.security" level="debug" />
+	<logger name="org.springframework.security" level="info" />
+
+	<logger name="com.zaxxer.hikari" level="info" />
 
 	<logger name="com.my.app" level="debug" />
 

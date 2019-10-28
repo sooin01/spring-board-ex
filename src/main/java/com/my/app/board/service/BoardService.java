@@ -22,6 +22,10 @@ public class BoardService {
 		return commonDao.selectList("Board.selectBoardList", board);
 	}
 
+	public Board getBoard(Board board) {
+		return commonDao.selectOne("Board.selectBoard", board);
+	}
+
 	public int insertBoard(Board board) {
 		return commonDao.insert("Board.insertBoard", board);
 	}
