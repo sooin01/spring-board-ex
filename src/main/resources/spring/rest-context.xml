@@ -3,7 +3,7 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="requestConfigBuilder" class="org.apache.http.client.config.RequestConfig" factory-method="custom">
+	<!-- <bean id="requestConfigBuilder" class="org.apache.http.client.config.RequestConfig" factory-method="custom">
 		<property name="connectTimeout" value="30" />
 		<property name="connectionRequestTimeout" value="30" />
 		<property name="socketTimeout" value="30" />
@@ -30,6 +30,6 @@
 
 	<bean id="restTemplate" class="org.springframework.web.client.RestTemplate">
 		<constructor-arg ref="requestFactory" />
-	</bean>
+	</bean> -->
 
 </beans>
