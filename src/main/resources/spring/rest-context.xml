@@ -15,11 +15,14 @@
 		<property name="maxTotal" value="100" />
 	</bean>
 	
+	<bean id="noopHostnameVerifier" class="org.apache.http.conn.ssl.NoopHostnameVerifier" />
+	
 	<bean id="httpClients" class="org.apache.http.impl.client.HttpClients" factory-method="custom">
 		<property name="defaultRequestConfig" ref="requestConfig" />
 		<property name="connectionManager" ref="connectionManager" />
 		<property name="maxConnPerRoute" value="10" />
 		<property name="maxConnTotal" value="100" />
+		<property name="SSLHostnameVerifier" ref="noopHostnameVerifier" />
 	</bean>
 	
 	<bean id="httpClient" factory-bean="httpClients" factory-method="build" />
