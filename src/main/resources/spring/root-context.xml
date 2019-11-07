@@ -40,5 +40,12 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory" />
 	</bean>
+	
+	<bean id="commonsRequestLoggingFilter" class="org.springframework.web.filter.CommonsRequestLoggingFilter">
+		<property name="includeHeaders" value="true" />
+		<property name="includePayload" value="true" />
+		<property name="includeQueryString" value="true" />
+		<property name="maxPayloadLength" value="8192" />
+	</bean>
 
 </beans>

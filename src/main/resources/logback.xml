@@ -12,6 +12,8 @@
 
 	<logger name="org.springframework.security" level="info" />
 
+	<logger name="org.springframework.web.filter" level="debug" />
+
 	<logger name="com.zaxxer.hikari" level="info" />
 
 	<logger name="com.my.app" level="debug" />
