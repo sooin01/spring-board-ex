@@ -19,12 +19,12 @@ import com.my.app.common.util.PagingUtil;
 
 @Controller
 @RequestMapping(value = "/notice")
+@Authorization(name = { Role.ADMIN, Role.USER })
 public class NoticeController {
 
 	@Autowired
 	private BoardService boardService;
 
-	@Authorization(name = { Role.ADMIN, Role.USER })
 	@GetMapping(value = { "/", "/list" })
 	public String list(Board board, ModelMap model) {
 		board.setOffset((board.getPage() - 1) * board.getListCount());

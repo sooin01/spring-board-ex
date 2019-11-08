@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.my.app.common.annotation.Authorization;
 import com.my.app.common.annotation.Authorization.Role;
+import com.my.app.common.exception.UnauthorizedException;
 
 public class AuthInterceptor implements HandlerInterceptor {
 
@@ -25,16 +26,21 @@ public class AuthInterceptor implements HandlerInterceptor {
 		HandlerMethod method = (HandlerMethod) handler;
 		Authorization authorization = method.getMethodAnnotation(Authorization.class);
 
+		if (authorization == null) {
+			authorization = method.getBean().getClass().getAnnotation(Authorization.class);
+		}
+
 		if (authorization != null) {
 			List<Role> roleList = Arrays.asList(authorization.name());
 
 			if (roleList.contains(Role.ADMIN) && roleList.contains(Role.USER)) {
 				LOG.info("관리자/사용자 접근 가능!");
-				// throw new UnauthorizedException();
 			} else if (roleList.contains(Role.ADMIN)) {
 				LOG.info("관리자 접근 가능!");
 			} else if (roleList.contains(Role.USER)) {
 				LOG.info("사용자 접근 가능!");
+			} else {
+				throw new UnauthorizedException();
 			}
 		} else {
 			LOG.info("누구나 접근 가능!");
