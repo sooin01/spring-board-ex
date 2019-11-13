@@ -26,6 +26,7 @@ public class NoticeController {
 	private BoardService boardService;
 
 	@GetMapping(value = { "/", "/list" })
+	@Authorization(name = { Role.ADMIN, Role.USER })
 	public String list(Board board, ModelMap model) {
 		board.setOffset((board.getPage() - 1) * board.getListCount());
 		int noticeCount = boardService.getBoardCount(board);
