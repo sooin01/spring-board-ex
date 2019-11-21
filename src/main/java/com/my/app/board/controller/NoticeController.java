@@ -47,16 +47,36 @@ public class NoticeController {
 	}
 
 	@GetMapping(value = { "/form" })
-	public String write() {
+	public String write(Board params, ModelMap model) {
+		if (params.getSeq() != null) {
+			Board board = boardService.getBoard(params);
+			model.addAttribute("board", board);
+		}
+
 		return "notice/form";
 	}
 
 	@PostMapping(value = { "/save" })
 	@ResponseBody
-	public void save(Board board) {
-		board.setUserId("admin");
-		board.setIsDelete(false);
-		boardService.insertBoard(board);
+	public Integer save(Board params) {
+		Board board = boardService.getBoard(params);
+
+		if (board != null) {
+			boardService.updateBoard(params);
+		} else {
+			params.setUserId("admin");
+			params.setIsDelete(false);
+			boardService.insertBoard(params);
+		}
+
+		return params.getSeq();
+	}
+
+	@GetMapping(value = "/delete")
+	public String delete(Board params) {
+		boardService.deleteBoard(params);
+
+		return "redirect:/notice/list";
 	}
 
 }

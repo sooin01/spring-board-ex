@@ -12,13 +12,15 @@
 <div class="container">
 
 	<form id="inputForm">
+		<input type="hidden" name="seq" value="${param.seq}">
+	
 		<div class="form-group">
 			<label for="title">Title</label>
-			<input type="text" class="form-control" id="title" name="title" placeholder="Enter title">
+			<input type="text" class="form-control" id="title" name="title" value="${board.title}" placeholder="Enter title">
 		</div>
 		<div class="form-group">
 			<label for="content">Content</label>
-			<textarea class="form-control" id="content" name="content"></textarea>
+			<textarea class="form-control" id="content" name="content">${board.content}</textarea>
 		</div>
 		<div class="form-group">
 			<div class="custom-file">
@@ -70,7 +72,7 @@
             contentType: false,
             data: formData,
             success: function(data) {
-            	
+            	location.replace("/notice/view?seq=" + data);
             }
         });
 	});

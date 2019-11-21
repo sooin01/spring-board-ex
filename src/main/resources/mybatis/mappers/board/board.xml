@@ -16,6 +16,7 @@
 		       create_dt, 
 		       update_dt 
 		FROM   board 
+		ORDER BY seq DESC
 		LIMIT #{offset}, #{listCount}
 	</select>
 
@@ -31,12 +32,26 @@
 		WHERE  seq = #{seq}
 	</select>
 	
-	<insert id="insertBoard">
+	<insert id="insertBoard" useGeneratedKeys="true" keyProperty="seq">
 		INSERT INTO board (
 			title, content, user_id, is_delete
 		) VALUES (
 			#{title}, #{content}, #{userId}, #{isDelete}
 		)
 	</insert>
+	
+	<update id="updateBoard">
+		UPDATE board
+		SET    title = #{title},
+		       content = #{content},
+		       update_dt = NOW()
+		WHERE  seq = #{seq}
+	</update>
+	
+	<delete id="deleteBoard">
+		DELETE
+		FROM   board
+		WHERE  seq = #{seq}
+	</delete>
 
 </mapper>

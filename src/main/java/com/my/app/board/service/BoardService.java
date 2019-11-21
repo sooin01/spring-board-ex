@@ -30,4 +30,12 @@ public class BoardService {
 		return commonDao.insert("Board.insertBoard", board);
 	}
 
+	public int updateBoard(Board board) {
+		return commonDao.update("Board.updateBoard", board);
+	}
+
+	public int deleteBoard(Board board) {
+		return commonDao.update("Board.deleteBoard", board);
+	}
+
 }

@@ -3,6 +3,8 @@
 <link href="/resources/lib/jquery-ui/jquery-ui.min.css" rel="stylesheet">
 <link href="/resources/lib/summernote/summernote-bs4.css" rel="stylesheet">
 <link href="/resources/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/resources/lib/bootstrap/css/bootstrap-grid.min.css" rel="stylesheet">
+<link href="/resources/lib/bootstrap/css/bootstrap-reboot.min.css" rel="stylesheet">
 
 <script src="/resources/lib/jquery/jquery-3.3.1.min.js"></script>
 <script src="/resources/lib/jquery-confirm/jquery-confirm.min.js"></script>

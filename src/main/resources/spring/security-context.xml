@@ -15,7 +15,7 @@
 		<security:form-login login-page="/login" default-target-url="/notice/list" />
 		<security:csrf disabled="true" />
 		<security:logout />
-		<security:session-management>
+		<security:session-management session-fixation-protection="migrateSession">
 			<security:concurrency-control max-sessions="1" />
 		</security:session-management>
 	</security:http>

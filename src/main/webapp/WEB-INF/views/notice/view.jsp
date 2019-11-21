@@ -12,23 +12,47 @@
 <div class="container">
 
 	<form id="inputForm">
-		<div class="form-group">
-			<label for="title">Title</label>
-			${board.title}
+		<div class="row">
+			<div class="col-4 bg-light">Title</div>
+			<div class="col-8">${board.title}</div>
 		</div>
-		<div class="form-group">
-			<label for="content">Content</label>
-			${board.content}
+		<div class="row">
+			<div class="col-4 bg-light">Content</div>
+			<div class="col-8">${board.content}</div>
 		</div>
 	</form>
 
 	<ul class="nav justify-content-end">
+		<li class="nav-item"><a class="nav-link active" href="#" id="delete">delete</a></li>
+		<li class="nav-item"><a class="nav-link active" href="#" id="form">form</a></li>
 		<li class="nav-item"><a class="nav-link active" href="#" id="list">list</a></li>
 	</ul>
 
 </div>
 	
 <script type="text/javascript">
+	$('#delete').on('click', function(e) {
+		e.preventDefault();
+		
+		$.confirm({
+			title : '알림!',
+			content : '삭제하시겠습니까?',
+			buttons : {
+				확인 : function() {
+					location.href = '/notice/delete?seq=${param.seq}';
+				},
+				취소 : function() {
+				}
+			}
+		});
+	});
+	
+	$('#form').on('click', function(e) {
+		e.preventDefault();
+		
+		location.href = '/notice/form?seq=${param.seq}';
+	});
+
 	$('#list').on('click', function(e) {
 		e.preventDefault();
 		
