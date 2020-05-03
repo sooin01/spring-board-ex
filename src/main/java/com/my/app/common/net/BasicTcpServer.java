@@ -13,8 +13,8 @@ import java.util.Iterator;
 
 public class BasicTcpServer {
 
-	public static void main(String[] args) {
-		Runnable server = new Runnable() {
+	public static void main(String[] args) throws InterruptedException {
+		Runnable sr = new Runnable() {
 			@Override
 			public void run() {
 				try {
@@ -25,7 +25,7 @@ public class BasicTcpServer {
 			}
 		};
 
-		Runnable client = new Runnable() {
+		Runnable cr = new Runnable() {
 			@Override
 			public void run() {
 				try {
@@ -36,8 +36,10 @@ public class BasicTcpServer {
 			}
 		};
 
-		new Thread(server).start();
-		new Thread(client).start();
+		Thread st = new Thread(sr);
+		st.start();
+		Thread ct = new Thread(cr);
+		ct.start();
 	}
 
 	public static void startServer() throws IOException {
@@ -51,12 +53,16 @@ public class BasicTcpServer {
 		System.out.println("Server started..");
 
 		while (true) {
-			selector.select();
+			int select = selector.select();
+			if (select == 0) {
+				break;
+			}
 
 			Iterator<SelectionKey> keys = selector.selectedKeys().iterator();
 			while (keys.hasNext()) {
 				SelectionKey key = keys.next();
 				keys.remove();
+				System.out.println("Server valid: " + key.isValid() + ", key: " + key.readyOps());
 
 				if (key.isValid()) {
 					if (key.isAcceptable()) {
@@ -66,11 +72,11 @@ public class BasicTcpServer {
 					}
 				}
 			}
-
-			System.out.println("Server close.");
-			selector.close();
-			serverSocketChannel.close();
 		}
+
+		System.out.println("Server close.");
+		selector.close();
+		serverSocketChannel.close();
 	}
 
 	private static void accept(Selector selector, SelectionKey key) throws IOException {
