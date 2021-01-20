@@ -16,6 +16,8 @@
 
 	<logger name="com.zaxxer.hikari" level="info" />
 
+	<logger name="org.apache" level="info" />
+
 	<logger name="com.my.app" level="debug" />
 
 	<logger name="Query" level="debug" />
