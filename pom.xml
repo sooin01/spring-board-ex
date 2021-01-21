@@ -12,8 +12,8 @@
 
 	<properties>
 		<java-version>1.8</java-version>
-		<org.springframework-version>4.3.28.RELEASE</org.springframework-version>
-		<org.springframework.security-version>4.2.13.RELEASE</org.springframework.security-version>
+		<org.springframework-version>4.3.30.RELEASE</org.springframework-version>
+		<org.springframework.security-version>4.2.20.RELEASE</org.springframework.security-version>
 	</properties>
 
 	<dependencies>
@@ -83,12 +83,12 @@
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
-			<version>1.9.2</version>
+			<version>1.9.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjweaver</artifactId>
-			<version>1.9.2</version>
+			<version>1.9.6</version>
 		</dependency>
 		
 		<!-- Commons -->
@@ -165,33 +165,33 @@
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis</artifactId>
-			<version>3.5.2</version>
+			<version>3.5.6</version>
 		</dependency>
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
-			<version>2.0.2</version>
+			<version>2.0.6</version>
 		</dependency>
 		
 		<!-- HikariCP -->
 		<dependency>
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
-			<version>3.3.1</version>
+			<version>3.4.5</version>
 		</dependency>
 		
 		<!-- MariaDB -->
 		<dependency>
 		    <groupId>org.mariadb.jdbc</groupId>
 		    <artifactId>mariadb-java-client</artifactId>
-		    <version>2.4.3</version>
+		    <version>2.7.1</version>
 		</dependency>
 		
 		<!-- HttpClient -->
 		<dependency>
 		    <groupId>org.apache.httpcomponents</groupId>
 		    <artifactId>httpclient</artifactId>
-		    <version>4.5.10</version>
+		    <version>4.5.13</version>
 		</dependency>
 		
 		<!-- Mail -->
@@ -210,32 +210,32 @@
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-databind</artifactId>
-		    <version>2.11.2</version>
+		    <version>2.12.1</version>
 		</dependency>
 		
 		<!-- ESAPI -->
 		<dependency>
 		    <groupId>org.owasp.esapi</groupId>
 		    <artifactId>esapi</artifactId>
-		    <version>2.2.0.0</version>
+		    <version>2.2.2.0</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.pdfbox</groupId>
 			<artifactId>pdfbox</artifactId>
-			<version>2.0.19</version>
+			<version>2.0.22</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.pdfbox</groupId>
 			<artifactId>pdfbox-tools</artifactId>
-			<version>2.0.19</version>
+			<version>2.0.22</version>
 		</dependency>
 		
 		<!-- Neety -->
 		<dependency>
 		    <groupId>io.netty</groupId>
 		    <artifactId>netty-all</artifactId>
-		    <version>4.1.49.Final</version>
+		    <version>4.1.58.Final</version>
 		</dependency>
 
 		<!-- Test -->
